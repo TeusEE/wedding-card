@@ -1,24 +1,37 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, lazy, Suspense } from 'react'
 import './App.css'
 import reactLogo from './assets/react.svg'
+import mainphoto from './assets/mainphoto.png'
 import mymap from './assets/mymap.png'
+import villadegd from './assets/villadegd.png'
 import viteLogo from '/vite.svg'
-import MyImage from './Myimage'
+import kakaoLogo from './assets/kakao-talk.svg'
+import linkimg from './assets/link.png'
 import ReactModal from 'react-modal'
 import Transport from './Transport'
 import Calendar from './Calendar'
+import Semititle from './Semititle'
+//import Gallery from './Gallery'
+//import MyBank from './MyBank'
+import shareMessage from './kakao'
 ReactModal.setAppElement('#root');
 
 function App() {
   const copy_link = () => {
-    navigator.clipboard.writeText("https://teusee.github.io/")
+    navigator.clipboard.writeText("https://buly.kr/4Frh3tS")
     alert("링크주소가 복사되었습니다.")
   }
+  const debug = process.env.NODE_ENV === 'development'?"solid":"none";
+
+  const MyBank = lazy(() => import('./MyBank'));
+  const Gallery = lazy(() => import('./Gallery'));
+  
+
   const today = new Date();
   const tg_date = new Date(2025, 6, 13, 11, 30, 0);
   const [images, set_images] = useState([]);
-  const [isflip, set_isfliep] = useState(true);
   const [image_modal, set_image_modal] = useState({isopen:false, src:null});
+  const [bank_modal, set_bank_modal] = useState({isopen:false, src:null});
 
   useEffect(() => {
     const temp = []
@@ -27,111 +40,95 @@ function App() {
     }
     set_images(temp)
   }, [])
-
-  const flip_gallery = () => {
-    const temp = []
-    if (!isflip) {
-      var row_cnt = 2
-    } else {
-      var row_cnt = 6
+  
+  useEffect(() => {
+    if (window.Kakao) {
+      const Kakao = window.Kakao
+      if (!Kakao.isInitialized()) {
+          Kakao.init('ca75bb8fef5f657c0751fb3a877252ee')
+      }
     }
-    for (let i = 0; i < row_cnt; i++) {
-      temp.push([viteLogo,viteLogo,viteLogo])
-    }
-    set_images(temp)
-    set_isfliep(!isflip)
-  }
+  }, [])
 
   return (
     <>
       <div className='main-frame'>
-        <div style = {{border:"solid"}}>
-          이태우 & 안지연
+        <div style = {{border:debug}}>
+          <p style = {{marginTop:"50px", marginBottom:"50px", fontSize : "24px", fontFamily : "MaruBuri"}}>이태우 & 안지연</p>
         </div>
         
-        <div style = {{border:"solid"}}>
-          2025년 7월 13일 일요일 오전 11시 30분<br/>
-          빌라드지디 논현
+        <div style = {{border:debug}}>
+          <p>2025년 7월 13일 일요일 오전 11시 30분</p>
+          <p>빌라드지디 논현</p>
         </div>
         
-        <div style={{ position: 'relative', border: 'solid' }}>
-          <img src={reactLogo} height={700} width={435} style={{ display: 'block' }} />
+        <div style={{ position: 'relative', border: debug }}>
+          <img src={mainphoto} width={"100%"} style={{ display: 'block' }} />
           <div style={{
             position: 'absolute',
             top: 0,
             left: 0,
             right: 0,
-            height: '20%',
-            background: 'linear-gradient(to bottom, rgba(255,255,255,0.8), rgba(255,255,255,0))',
-            filter: 'blur(10px)'
+            height: '30%',
+            background: 'linear-gradient(to bottom, rgb(255, 255, 255) 0%, rgba(255, 255, 255, 0.88) 30%, rgba(255, 255, 255, 0) 100%)',
+            filter: 'blur(0px)'
           }}></div>
           <div style={{
             position: 'absolute',
             bottom: 0,
             left: 0,
             right: 0,
-            height: '20%',
-            background: 'linear-gradient(to top, rgba(255,255,255,0.8), rgba(255,255,255,0))',
-            filter: 'blur(10px)'
+            height: '30%',
+            background: 'linear-gradient(to top, rgb(255, 255, 255) 0%, rgba(255, 255, 255, 0.88) 30%, rgba(255, 255, 255, 0) 100%)',
+            filter: 'blur(0px)'
           }}></div>
         </div>
 
 
-        <div style = {{border:"solid"}}>
-          Invitiaion<br/>
+        <div style = {{border:debug}}>
+          <Semititle>INVITATION</Semititle>
           소중한 분들을 모십니다.<br/>
-
           블라블라블라블라블라블라
         </div>
 
-        <div style = {{border:"solid"}}>
-          이종면 유병희 의 차남 태우<br/>
-          안XX 조민경 의 차녀 지연
+        <div style = {{border:debug}}>
+          <b>이종면 · 유병희</b> 의 차남 <span style = {{fontFamily:"MaruBuriBold"}}>태우</span><br/>
+          <b>안동열 · 조민경</b> 의 차녀 <span style = {{fontFamily:"MaruBuriBold"}}>지연</span>
         </div>
 
-        <div>연락하기</div>
-
-        <div style = {{border:"solid"}}>
-          2025. 7. 13
-          <br/>일요일 오전 11시 30분<br/>
+        <div style = {{border:debug}}>
+          <Semititle>2025. 7. 13</Semititle>
+          일요일 오전 11시 30분<br/>
           <Calendar/>
-          태우 지연의 결혼식이 {Math.floor((tg_date-today)/(1000*60*60*24))}일 남았습니다.
+          태우 지연의 결혼식이
+          <span style = {{color : "magenta"}}>
+          {Math.floor((tg_date-today)/(1000*60*60*24))}
+          </span>일 남았습니다.
         </div>
+        
 
-        <div style = {{border:"solid"}}>
-          사진 갤러리<br/>
-          {
-            [images].map((v, i) => {
-              return (
-               v.map((v2, i2)=>{
-                return (
-                  <div key = {i*100+i2*10} style = {{display:"flex"}}>
-                    {
-                      [0, 1, 2].map((v3, i3) => {
-                      return (
-                        <MyImage key = {i*100+i2*10+i3} src={v2[v3]} image_modal = {image_modal} set_image_modal={set_image_modal}/>
-                      )
-                      })
-                    }
-                  </div>
-                  )
-               }) 
-              )
-            })
-          }
-          <button onClick={()=>flip_gallery()}>{isflip?"더보기":"접기"}</button>
+        <div style = {{border:debug}}>
+          <Suspense fallback={<div>Loading...</div>}>
+            {/*<div className='fade-in'>*/}
+            <div>
+              <Gallery
+                title = "GALLERY"
+                images = {images}
+                set_images = {set_images}
+                image_modal = {image_modal}
+                set_image_modal = {set_image_modal}
+              />
+            </div>
+          </Suspense>
         </div>
 
 
-        <div style = {{border:"solid"}}>
-          오시는길<br/>
-          <img src = {mymap} height={200}></img><br/>
-          지도
-          <div>
-          <br/>
+        <div style = {{border:debug}}>
+          <Semititle>Location</Semititle>
+          <img src = {villadegd} width={"35%"}></img><br/>
+          <img src = {mymap} width={"90%"}></img><br/>
           주소 : 서울 강남구 언주로 126길 23 (논현동) 
-          </div>
-          <br/>
+          <br/><br/>
           <Transport
             tr_type = "bus"
           />
@@ -143,21 +140,78 @@ function App() {
           />
         </div>
 
-        <div>
-          카카오톡 공유하기
-          <button onClick={()=>copy_link()}>
+        <div style = {{border:debug}}>
+          <Semititle>마음 전하실 곳</Semititle>
+          <div onClick = {()=>{set_bank_modal({isopen:true, src:"M"})}}
+            style = {{
+              backgroundColor:"rgb(242,238,238)",
+              padding:"12px",
+              margin:"12px",
+              marginLeft:"20%",
+              marginRight:"20%"
+            }}>신랑측 계좌번호</div>
+          <div onClick = {()=>{set_bank_modal({isopen:true, src:"W"})}}
+            style = {{
+              backgroundColor:"rgb(242,238,238)",
+              padding:"12px",
+              margin:"12px",
+              marginLeft:"20%",
+              marginRight:"20%"
+            }}>신부측 계좌번호</div>
+        </div>
+
+        <div style = {{border:debug}}>
+          <div onClick={() => shareMessage()} style={{ display: "flex", alignItems: "center", justifyContent: "center", marginTop : "40px"}}>
+            <img src={kakaoLogo} width={25} style={{ marginRight: "5px" }}></img>
+            카카오톡 공유하기
+          </div>
+          <div onClick={() => copy_link()} style={{ display: "flex", alignItems: "center", justifyContent: "center", margin : "20px" }}>
+            <img src={linkimg} width={25} style={{ marginRight: "5px" }}></img>
             링크주소 복사하기
-          </button>
+          </div>
         </div>
         <ReactModal
           isOpen={image_modal.isopen}
           onRequestClose={() => set_image_modal({isopen:false, src:null})}
           shouldCloseOnOverlayClick={true}
-          style = {{content : {width:"50%", height:"50%", margin:"auto"}}}
+          style = {{
+            content : {
+              position: 'absolute',
+              top: '50%',
+              left: '50%',
+              right: 'auto',
+              bottom: 'auto',
+              transform: 'translate(-50%, -50%)',
+              minWidth: 360, // for mobile
+            }
+          }}
         > 
           <div style = {{display:"flex", justifyContent:"center"}}>
-            <img src={image_modal.src}/>
+            <img src={image_modal.src} width={"100%"}/>
           </div>  
+        </ReactModal>
+
+        <ReactModal
+          isOpen={bank_modal.isopen}
+          onRequestClose={() => set_bank_modal({isopen:false, src:null})}
+          shouldCloseOnOverlayClick={true}
+          style = {{
+            content : {
+              position: 'absolute',
+              top: '50%',
+              left: '50%',
+              right: 'auto',
+              bottom: 'auto',
+              transform: 'translate(-50%, -50%)',
+              minWidth: 360, // for mobile
+            }
+          }}
+        > 
+          <Suspense fallback={<div>Loading...</div>}>
+            <div style = {{display:"flex", justifyContent:"center"}}>
+              <MyBank src = {bank_modal.src}/>
+            </div>  
+          </Suspense>
         </ReactModal>
       </div>
     </>

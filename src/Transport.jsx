@@ -20,10 +20,10 @@ const Transport  = ({tr_type}) => {
     
     return  (
     <div>
-        <div>
+        <div style = {{fontFamily:"MaruBuriSemiBold"}}>
             {rev_tr_type}로 오시는 분들
         </div>
-        <div>
+        <div style = {{fontFamily:"MaruBuriLight"}}>
             <div dangerouslySetInnerHTML={{ __html: contents }} />
         </div>
         <br/>

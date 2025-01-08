@@ -22,8 +22,6 @@ const Calendar = () => {
   const rows = [];
   for (let i = 0; i < calendarDays.length; i += 7) {
     const week = calendarDays.slice(i, i + 7);
-    week.map((day, idx)=>{console.log(day.key==="13")});
-    console.log("next:")
     rows.push(
       <tr key={`row-${i}`}>
         {week.map((day, index) => (

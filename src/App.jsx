@@ -12,6 +12,7 @@ import Semititle from './Semititle'
 //import Gallery from './Gallery'
 import MyBank from './MyBank'
 import Modal from './Modal'
+import shareMessage from './kakao'
 
 function App() {
   const copy_link = () => {
@@ -35,6 +36,15 @@ function App() {
       temp.push([viteLogo,viteLogo,viteLogo])
     }
     set_images(temp)
+  }, [])
+
+  useEffect(() => {
+    if (window.Kakao) {
+      const Kakao = window.Kakao
+      if (!Kakao.isInitialized()) {
+          Kakao.init('ca75bb8fef5f657c0751fb3a877252ee')
+      }
+    }
   }, [])
   
 

@@ -52,7 +52,9 @@ function App() {
     <>
       <div className='main-frame'>
         <div style = {{border:debug}}>
-          <p style = {{marginTop:"50px", marginBottom:"50px", fontSize : "24px", fontFamily : "MaruBuri"}}>이태우 & 안지연</p>
+          <p style = {{marginTop:"50px", marginBottom:"50px", fontSize : "35px", fontFamily : "Ownglyph_kimkonghae"}}>
+            이태우 <span style = {{fontFamily:"Ownglyph_kimkonghae", fontSize : "30px"}}>&</span> 안지연
+          </p>
         </div>
         
         <div style = {{border:debug}}>
@@ -99,7 +101,11 @@ function App() {
         </div>
 
         <div style = {{border:debug, backgroundColor:"rgb(246, 245, 245)"}}>
-          <Semititle>2025. 7. 13</Semititle>
+          <p style = {{
+            fontSize:"20px",
+            fontFamily:"MaruBuri",
+            margin:"20px"
+          }}>2025. 7. 13</p>
           일요일 오전 11시 30분<br/>
           <Calendar/>
           태우 지연의 결혼식이
@@ -143,7 +149,11 @@ function App() {
         </div>
 
         <div style = {{border:debug}}>
-          <Semititle>마음 전하실 곳</Semititle>
+          <p style = {{
+            fontSize:"20px",
+            fontFamily:"MaruBuri",
+            margin:"20px"
+          }}>마음 전하실 곳</p>
           <div onClick = {()=>{set_bank_modal({isopen:true, src:"M"});document.body.classList.add('modal-open')}}
             style = {{
               backgroundColor:"rgb(242,238,238)",
@@ -180,7 +190,7 @@ function App() {
         <Modal
           isOpen={image_modal}
           onClose={() => {set_image_modal({isopen:false, src:null});document.body.classList.remove('modal-open')}}
-          
+          mystyle = {{backgroundColor:"rgb(0, 0, 0)"}}
         >
           <div style = {{display:"flex", justifyContent:"center"}}>
             <img src={image_modal.src} width={"100%"}/>

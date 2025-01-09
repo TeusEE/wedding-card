@@ -2,8 +2,8 @@ const Semititle  = ({children}) => {
     return  (
     <div>
         <p style = {{
-            fontSize:"15px",
-            fontFamily:"MaruBuriLight"  
+            fontSize:"30px",
+            fontFamily:"continuous"  
         }}>{children}</p>
     </div>
 )}

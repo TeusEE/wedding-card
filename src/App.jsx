@@ -38,16 +38,14 @@ function App() {
       temp.push([viteLogo,viteLogo,viteLogo])
     }
     set_images(temp)
-    window.scrollTo(0, 0)
-  }, [])
-
-  useEffect(() => {
+    
     if (window.Kakao) {
       const Kakao = window.Kakao
       if (!Kakao.isInitialized()) {
           Kakao.init('ca75bb8fef5f657c0751fb3a877252ee')
       }
     }
+    window.scrollTo(0, 0)
   }, [])
 
 
@@ -56,37 +54,39 @@ function App() {
   return (
     <>
       <div className='main-frame'>
-        <div style = {{border:debug}}>
+        <div className="fade-in" style={{ border: debug }}>
           <p style = {{marginTop:"50px", marginBottom:"50px", fontSize : "20px", fontFamily : "MaruBuri"}}>
             이태우 & 안지연
           </p>
         </div>
         
-        <div style = {{border:debug}}>
+        <div className="fade-in" style={{ border: debug }}>
           <p>2025년 7월 13일 일요일 오전 11시 30분</p>
           <p>빌라드지디 논현</p>
         </div>
         
-        <div style={{ position: 'relative', border: debug }}>
-          <img src={mainphoto} width={"100%"} style={{ display: 'block' }} />
-          <div style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            right: 0,
-            height: '30%',
-            background: 'linear-gradient(to bottom, rgb(255, 255, 255) 0%, rgba(255, 255, 255, 0.88) 30%, rgba(255, 255, 255, 0) 100%)',
-            filter: 'blur(0px)'
-          }}></div>
-          <div style={{
-            position: 'absolute',
-            bottom: 0,
-            left: 0,
-            right: 0,
-            height: '30%',
-            background: 'linear-gradient(to top, rgb(255, 255, 255) 0%, rgba(255, 255, 255, 0.88) 30%, rgba(255, 255, 255, 0) 100%)',
-            filter: 'blur(0px)'
-          }}></div>
+        <div className="fade-in" style={{ border: debug }}>
+          <div style={{ position: 'relative', border: debug }}>
+            <img src={mainphoto} width={"100%"} style={{ display: 'block' }} />
+            <div style={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              right: 0,
+              height: '30%',
+              background: 'linear-gradient(to bottom, rgb(255, 255, 255) 0%, rgba(255, 255, 255, 0.88) 30%, rgba(255, 255, 255, 0) 100%)',
+              filter: 'blur(0px)'
+            }}></div>
+            <div style={{
+              position: 'absolute',
+              bottom: 0,
+              left: 0,
+              right: 0,
+              height: '30%',
+              background: 'linear-gradient(to top, rgb(255, 255, 255) 0%, rgba(255, 255, 255, 0.88) 30%, rgba(255, 255, 255, 0) 100%)',
+              filter: 'blur(0px)'
+            }}></div>
+          </div>
         </div>
           
         
@@ -105,23 +105,25 @@ function App() {
             <b>안동열 · 조민경</b> 의 차녀 <span style = {{fontFamily:"MaruBuriBold"}}>지연</span>
           </div>
         </Myinview>
-
-        <div style = {{border:debug, backgroundColor:"rgb(246, 245, 245)"}}>
-          <p style = {{
-            fontSize:"20px",
-            fontFamily:"MaruBuri",
-            margin:"20px"
-          }}>2025. 7. 13</p>
-          일요일 오전 11시 30분<br/>
-          <Calendar/>
-          태우 지연의 결혼식이
-          <span style = {{color : "magenta"}}>
-          {Math.floor((tg_date-today)/(1000*60*60*24))}
-          </span>일 남았습니다.
-        </div>
+        
+        <Myinview debug = {debug}>
+          <div style = {{border:debug, backgroundColor:"rgb(246, 245, 245)"}}>
+            <p style = {{
+              fontSize:"20px",
+              fontFamily:"MaruBuri",
+              margin:"20px"
+            }}>2025. 7. 13</p>
+            일요일 오전 11시 30분<br/>
+            <Calendar/>
+            태우 지연의 결혼식이
+            <span style = {{color : "magenta"}}>
+            {Math.floor((tg_date-today)/(1000*60*60*24))}
+            </span>일 남았습니다.
+          </div>
+        </Myinview>
         
 
-        <div style = {{border:debug}}>
+        <Myinview debug = {debug}>
           <Suspense fallback={<div>Loading...</div>}>
             {/*<div className='fade-in'>*/}
             <div>
@@ -134,7 +136,7 @@ function App() {
               />
             </div>
           </Suspense>
-        </div>
+        </Myinview>
 
 
         <div style = {{border:debug}}>
@@ -154,7 +156,7 @@ function App() {
           />
         </div>
 
-        <div style = {{border:debug}}>
+        <Myinview debug = {debug}>
           <p style = {{
             fontSize:"20px",
             fontFamily:"MaruBuri",
@@ -176,9 +178,9 @@ function App() {
               marginLeft:"20%",
               marginRight:"20%"
             }}>신부측 계좌번호</div>
-        </div>
+        </Myinview>
 
-        <div style = {{border:debug}}>
+        <Myinview debug = {debug}>
           <div onClick={() => shareMessage()} style={{ display: "flex", alignItems: "center", justifyContent: "center", marginTop : "40px"}}>
             <img src={kakaoLogo} width={25} style={{ marginRight: "5px" }}></img>
             카카오톡 공유하기
@@ -187,7 +189,7 @@ function App() {
             <img src={linkimg} width={25} style={{ marginRight: "5px" }}></img>
             링크주소 복사하기
           </div>
-        </div>
+        </Myinview>
 
         <div style = {{border:debug}}>
             <p style = {{fontSize :"12px"}}>Copyright 2025. Made By TEUS.</p>

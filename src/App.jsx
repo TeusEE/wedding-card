@@ -13,6 +13,8 @@ import Semititle from './Semititle'
 import MyBank from './MyBank'
 import Modal from './Modal'
 import shareMessage from './kakao'
+import Myinview from './Myinview'
+
 
 function App() {
   const copy_link = () => {
@@ -36,6 +38,7 @@ function App() {
       temp.push([viteLogo,viteLogo,viteLogo])
     }
     set_images(temp)
+    window.scrollTo(0, 0)
   }, [])
 
   useEffect(() => {
@@ -46,14 +49,16 @@ function App() {
       }
     }
   }, [])
+
+
   
 
   return (
     <>
       <div className='main-frame'>
         <div style = {{border:debug}}>
-          <p style = {{marginTop:"50px", marginBottom:"50px", fontSize : "35px", fontFamily : "Ownglyph_kimkonghae"}}>
-            이태우 <span style = {{fontFamily:"Ownglyph_kimkonghae", fontSize : "30px"}}>&</span> 안지연
+          <p style = {{marginTop:"50px", marginBottom:"50px", fontSize : "20px", fontFamily : "MaruBuri"}}>
+            이태우 & 안지연
           </p>
         </div>
         
@@ -83,22 +88,23 @@ function App() {
             filter: 'blur(0px)'
           }}></div>
         </div>
-
-
-        <div style = {{border:debug}}>
+          
+        
+        <Myinview debug = {debug}>
           <Semititle>INVITATION</Semititle>
           소중한 분들을 모십니다.<br/>
           블라블라블라블라블라블라
-        </div>
+        </Myinview>
 
-        <div style = {{border:debug}}>
+
+        <Myinview debug = {debug}>
           <div style = {{marginBottom:"10px", marginTop : "20px"}}>
             <b>이종면 · 유병희</b> 의 차남 <span style = {{fontFamily:"MaruBuriBold"}}>태우</span><br/>
           </div>
           <div style = {{marginBottom:"10px", marginTop : "10px"}}>
             <b>안동열 · 조민경</b> 의 차녀 <span style = {{fontFamily:"MaruBuriBold"}}>지연</span>
           </div>
-        </div>
+        </Myinview>
 
         <div style = {{border:debug, backgroundColor:"rgb(246, 245, 245)"}}>
           <p style = {{

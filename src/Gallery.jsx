@@ -41,7 +41,18 @@ const Gallery  = ({title, images, set_images, image_modal, set_image_modal}) => 
             )
         })
         }
-        <button onClick={()=>flip_gallery()}>{isflip?"더보기":"접기"}</button>
+        <div
+          onClick={() => {flip_gallery()}}
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            marginTop : "5px",
+            marginBottom : "20px",
+          }}
+        >
+          {isflip?"더보기":"접기"}
+        </div>
     </>
 )}
 

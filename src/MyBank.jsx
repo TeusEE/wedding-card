@@ -17,8 +17,8 @@ const MyBank  = ({src}) => {
     return  (
     <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '100%' }}>
         {
-            ["mother", "father", "me"].map((key) => {
-                return <div onClick={()=>copy_bank(dt[key][2])}
+            ["mother", "father", "me"].map((key, idx) => {
+                return <div key = {idx} onClick={()=>copy_bank(dt[key][2])}
                 style = {{
                     border:"1px solid black",
                     borderRadius:"12px",

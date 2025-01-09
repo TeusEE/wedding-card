@@ -4,8 +4,7 @@ const MyImage  = ({src, image_modal, set_image_modal}) => {
     }
     return  (
     <div style = {{margin : "2%", border:"1px solid black", borderRadius:"12px", width:"29%", height:"120px"}}>
-        {/*<img onClick = {()=>open_modal()} src={src} alt="my image" height={120} width={120}/>*/}
-        <img onClick = {()=>open_modal()} src={src} height={"100%"} width={"100%"} alt="my image"/>
+        <img onClick = {()=>{open_modal();document.body.classList.add('modal-open')}} src={src} height={"100%"} width={"100%"} alt="my image"/>
     </div>
 )}
 

@@ -1,20 +1,17 @@
 import { useEffect, useState, lazy, Suspense } from 'react'
 import './App.css'
-import reactLogo from './assets/react.svg'
 import mainphoto from './assets/mainphoto.png'
 import mymap from './assets/mymap.png'
 import villadegd from './assets/villadegd.png'
 import viteLogo from '/vite.svg'
 import kakaoLogo from './assets/kakao-talk.svg'
 import linkimg from './assets/link.png'
-import ReactModal from 'react-modal'
 import Transport from './Transport'
 import Calendar from './Calendar'
 import Semititle from './Semititle'
 //import Gallery from './Gallery'
-//import MyBank from './MyBank'
-import shareMessage from './kakao'
-ReactModal.setAppElement('#root');
+import MyBank from './MyBank'
+import Modal from './Modal'
 
 function App() {
   const copy_link = () => {
@@ -23,7 +20,6 @@ function App() {
   }
   const debug = process.env.NODE_ENV === 'development'?"solid":"none";
 
-  const MyBank = lazy(() => import('./MyBank'));
   const Gallery = lazy(() => import('./Gallery'));
   
 
@@ -41,14 +37,6 @@ function App() {
     set_images(temp)
   }, [])
   
-  useEffect(() => {
-    if (window.Kakao) {
-      const Kakao = window.Kakao
-      if (!Kakao.isInitialized()) {
-          Kakao.init('ca75bb8fef5f657c0751fb3a877252ee')
-      }
-    }
-  }, [])
 
   return (
     <>
@@ -92,11 +80,15 @@ function App() {
         </div>
 
         <div style = {{border:debug}}>
-          <b>이종면 · 유병희</b> 의 차남 <span style = {{fontFamily:"MaruBuriBold"}}>태우</span><br/>
-          <b>안동열 · 조민경</b> 의 차녀 <span style = {{fontFamily:"MaruBuriBold"}}>지연</span>
+          <div style = {{marginBottom:"10px", marginTop : "20px"}}>
+            <b>이종면 · 유병희</b> 의 차남 <span style = {{fontFamily:"MaruBuriBold"}}>태우</span><br/>
+          </div>
+          <div style = {{marginBottom:"10px", marginTop : "10px"}}>
+            <b>안동열 · 조민경</b> 의 차녀 <span style = {{fontFamily:"MaruBuriBold"}}>지연</span>
+          </div>
         </div>
 
-        <div style = {{border:debug}}>
+        <div style = {{border:debug, backgroundColor:"rgb(246, 245, 245)"}}>
           <Semititle>2025. 7. 13</Semititle>
           일요일 오전 11시 30분<br/>
           <Calendar/>
@@ -142,7 +134,7 @@ function App() {
 
         <div style = {{border:debug}}>
           <Semititle>마음 전하실 곳</Semititle>
-          <div onClick = {()=>{set_bank_modal({isopen:true, src:"M"})}}
+          <div onClick = {()=>{set_bank_modal({isopen:true, src:"M"});document.body.classList.add('modal-open')}}
             style = {{
               backgroundColor:"rgb(242,238,238)",
               padding:"12px",
@@ -150,7 +142,7 @@ function App() {
               marginLeft:"20%",
               marginRight:"20%"
             }}>신랑측 계좌번호</div>
-          <div onClick = {()=>{set_bank_modal({isopen:true, src:"W"})}}
+          <div onClick = {()=>{set_bank_modal({isopen:true, src:"W"});document.body.classList.add('modal-open')}}
             style = {{
               backgroundColor:"rgb(242,238,238)",
               padding:"12px",
@@ -170,49 +162,22 @@ function App() {
             링크주소 복사하기
           </div>
         </div>
-        <ReactModal
-          isOpen={image_modal.isopen}
-          onRequestClose={() => set_image_modal({isopen:false, src:null})}
-          shouldCloseOnOverlayClick={true}
-          style = {{
-            content : {
-              position: 'absolute',
-              top: '50%',
-              left: '50%',
-              right: 'auto',
-              bottom: 'auto',
-              transform: 'translate(-50%, -50%)',
-              minWidth: 360, // for mobile
-            }
-          }}
-        > 
+
+        <div style = {{border:debug}}>
+            <p style = {{fontSize :"12px"}}>Copyright 2025. Made By TEUS.</p>
+        </div>
+
+        <Modal isOpen={image_modal} onClose={() => {set_image_modal({isopen:false, src:null});document.body.classList.remove('modal-open')}}>
           <div style = {{display:"flex", justifyContent:"center"}}>
             <img src={image_modal.src} width={"100%"}/>
           </div>  
-        </ReactModal>
-
-        <ReactModal
-          isOpen={bank_modal.isopen}
-          onRequestClose={() => set_bank_modal({isopen:false, src:null})}
-          shouldCloseOnOverlayClick={true}
-          style = {{
-            content : {
-              position: 'absolute',
-              top: '50%',
-              left: '50%',
-              right: 'auto',
-              bottom: 'auto',
-              transform: 'translate(-50%, -50%)',
-              minWidth: 360, // for mobile
-            }
-          }}
-        > 
-          <Suspense fallback={<div>Loading...</div>}>
-            <div style = {{display:"flex", justifyContent:"center"}}>
-              <MyBank src = {bank_modal.src}/>
-            </div>  
-          </Suspense>
-        </ReactModal>
+        </Modal>
+        
+        <Modal isOpen={bank_modal} onClose={() => {set_bank_modal({isopen:false, src:null});document.body.classList.remove('modal-open')}}>
+          <div style = {{display:"flex", justifyContent:"center"}}>
+            <MyBank src = {bank_modal.src}/>
+          </div>  
+        </Modal>
       </div>
     </>
   )

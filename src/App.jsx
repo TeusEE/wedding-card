@@ -177,13 +177,21 @@ function App() {
             <p style = {{fontSize :"12px"}}>Copyright 2025. Made By TEUS.</p>
         </div>
 
-        <Modal isOpen={image_modal} onClose={() => {set_image_modal({isopen:false, src:null});document.body.classList.remove('modal-open')}}>
+        <Modal
+          isOpen={image_modal}
+          onClose={() => {set_image_modal({isopen:false, src:null});document.body.classList.remove('modal-open')}}
+          
+        >
           <div style = {{display:"flex", justifyContent:"center"}}>
             <img src={image_modal.src} width={"100%"}/>
           </div>  
         </Modal>
         
-        <Modal isOpen={bank_modal} onClose={() => {set_bank_modal({isopen:false, src:null});document.body.classList.remove('modal-open')}}>
+        <Modal
+          isOpen={bank_modal}
+          onClose={() => {set_bank_modal({isopen:false, src:null});document.body.classList.remove('modal-open')}}
+          mystyle = {{backgroundColor:"rgb(255, 246, 246)"}}
+        >
           <div style = {{display:"flex", justifyContent:"center"}}>
             <MyBank src = {bank_modal.src}/>
           </div>  

@@ -38,6 +38,11 @@ function App() {
   const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef(null);
   const handleAudioToggle = () => {
+    if (!audioRef.current) {
+      audioRef.current = new Audio(audioFile);
+      audioRef.current.load()
+      audioRef.current.addEventListener('ended', () => setIsPlaying(false));
+    }
     if (isPlaying) {
       audioRef.current.pause();
     } else {
@@ -61,7 +66,6 @@ function App() {
       }
     }
 
-    audioRef.current = new Audio(audioFile);
     return () =>{
       if (audioRef.current){
         audioRef.current.pause();

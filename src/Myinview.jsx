@@ -2,27 +2,19 @@ import React, { useState, useEffect } from 'react';
 import { InView } from 'react-intersection-observer';
 
 const Myinview = ({ children, debug }) => {
-  const [hasBeenInView, setHasBeenInView] = useState(false);
-  const [isFirstMount, setIsFirstMount] = useState(true);
 
-  useEffect(() => {
-    setIsFirstMount(false);
-  }, []);
 
   return (
     <InView
       triggerOnce={true}
-      threshold={0.25}
+      initialInView={false}
+      threshold={0.75}
       delay = {400}
-      onChange={(inView, entry) => {
-        if (!isFirstMount && inView && !hasBeenInView) {
-          setHasBeenInView(true);
-        }
-      }}
+      
     >
-      {({ ref }) => (
+      {({ inView, ref }) => (
         <div ref={ref}>
-          {hasBeenInView ? (
+          {inView ? (
             <div className="fade-in" style={{ border: debug }}>
               {children}
             </div>

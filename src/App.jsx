@@ -1,10 +1,11 @@
-import { useEffect, useState, lazy, Suspense } from 'react'
+import { useEffect, useState, lazy, Suspense, useRef } from 'react'
 import './App.css'
 import mainphoto from './assets/mainphoto.png'
 import mymap from './assets/mymap.png'
 import villadegd from './assets/villadegd.png'
 import viteLogo from '/vite.svg'
 import kakaoLogo from './assets/kakao-talk.svg'
+import audioIcon from './assets/audio.svg'
 import linkimg from './assets/link.png'
 import Transport from './Transport'
 import Calendar from './Calendar'
@@ -14,6 +15,8 @@ import MyBank from './MyBank'
 import Modal from './Modal'
 import shareMessage from './kakao'
 import Myinview from './Myinview'
+import Myinview_test from './Myinview_test'
+import audioFile from './assets/background_music.weba'
 
 
 function App() {
@@ -31,8 +34,20 @@ function App() {
   const [images, set_images] = useState([]);
   const [image_modal, set_image_modal] = useState({isopen:false, src:null});
   const [bank_modal, set_bank_modal] = useState({isopen:false, src:null});
+  
+  const [isPlaying, setIsPlaying] = useState(false);
+  const audioRef = useRef(null);
+  const handleAudioToggle = () => {
+    if (isPlaying) {
+      audioRef.current.pause();
+    } else {
+      audioRef.current.play();
+    }
+    setIsPlaying(!isPlaying);
+  };
 
   useEffect(() => {
+    window.scrollTo(0, 0)
     const temp = []
     for (let i = 0; i < 2; i++) {
       temp.push([viteLogo,viteLogo,viteLogo])
@@ -45,7 +60,14 @@ function App() {
           Kakao.init('ca75bb8fef5f657c0751fb3a877252ee')
       }
     }
-    window.scrollTo(0, 0)
+
+    audioRef.current = new Audio(audioFile);
+    return () =>{
+      if (audioRef.current){
+        audioRef.current.pause();
+        audioRef.current = null;
+      }
+    }
   }, [])
 
 
@@ -54,8 +76,16 @@ function App() {
   return (
     <>
       <div className='main-frame'>
+        <div style={{ border: debug, textAlign: 'right' }}>
+          <img
+            src={audioIcon} 
+            width={"20px"} 
+            style={{ marginRight: "10px", marginTop: "10px" }} 
+            onClick={handleAudioToggle}
+          />
+        </div>
         <div className="fade-in" style={{ border: debug }}>
-          <p style = {{marginTop:"50px", marginBottom:"50px", fontSize : "20px", fontFamily : "MaruBuri"}}>
+          <p style = {{marginTop:"20px", marginBottom:"50px", fontSize : "20px", fontFamily : "MaruBuri"}}>
             이태우 & 안지연
           </p>
         </div>
@@ -90,21 +120,21 @@ function App() {
         </div>
           
         
-        <Myinview debug = {debug}>
+        <Myinview_test debug = {debug} offset_y = "300">
           <Semititle>INVITATION</Semititle>
           소중한 분들을 모십니다.<br/>
           블라블라블라블라블라블라
-        </Myinview>
+        </Myinview_test>
 
 
-        <Myinview debug = {debug}>
+        <Myinview_test debug = {debug} offset_y = "450">
           <div style = {{marginBottom:"10px", marginTop : "20px"}}>
             <b>이종면 · 유병희</b> 의 차남 <span style = {{fontFamily:"MaruBuriBold"}}>태우</span><br/>
           </div>
           <div style = {{marginBottom:"10px", marginTop : "10px"}}>
             <b>안동열 · 조민경</b> 의 차녀 <span style = {{fontFamily:"MaruBuriBold"}}>지연</span>
           </div>
-        </Myinview>
+        </Myinview_test>
         
         <Myinview debug = {debug}>
           <div style = {{border:debug, backgroundColor:"rgb(246, 245, 245)"}}>

@@ -31,7 +31,7 @@ function App() {
 
   const today = new Date();
   const tg_date = new Date(2025, 6, 13, 11, 30, 0);
-  const [images, set_images] = useState([]);
+  
   const [image_modal, set_image_modal] = useState({isopen:false, src:null});
   const [bank_modal, set_bank_modal] = useState({isopen:false, src:null});
   
@@ -53,11 +53,6 @@ function App() {
 
   useEffect(() => {
     window.scrollTo(0, 0)
-    const temp = []
-    for (let i = 0; i < 2; i++) {
-      temp.push([viteLogo,viteLogo,viteLogo])
-    }
-    set_images(temp)
     
     if (window.Kakao) {
       const Kakao = window.Kakao
@@ -163,8 +158,6 @@ function App() {
             <div>
               <Gallery
                 title = "GALLERY"
-                images = {images}
-                set_images = {set_images}
                 image_modal = {image_modal}
                 set_image_modal = {set_image_modal}
               />

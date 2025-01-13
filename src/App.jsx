@@ -1,6 +1,6 @@
 import { useEffect, useState, lazy, Suspense, useRef } from 'react'
 import './App.css'
-import mainphoto from './assets/mainphoto.png'
+import mainphoto from './assets/mainphoto.webp'
 import mymap from './assets/mymap.png'
 import villadegd from './assets/villadegd.png'
 import viteLogo from '/vite.svg'

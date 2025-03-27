@@ -166,7 +166,7 @@ function App() {
         </Myinview>
 
 
-        <div style = {{border:debug}}>
+        <Myinview debug = {debug}>
           <Semititle>Location</Semititle>
           <img src = {villadegd} width={"35%"}></img><br/>
           <img src = {mymap} width={"90%"}></img><br/>
@@ -181,7 +181,7 @@ function App() {
           <Transport
             tr_type = "metro"
           />
-        </div>
+        </Myinview>
 
         <Myinview debug = {debug}>
           <p style = {{
@@ -218,7 +218,7 @@ function App() {
           </div>
         </Myinview>
 
-        <div style = {{border:debug}}>
+        <div style = {{border:debug, width:"100%"}}>
             <p style = {{fontSize :"12px"}}>Copyright 2025. Made By TEUS.</p>
         </div>
 

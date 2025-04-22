@@ -121,8 +121,21 @@ function App() {
         
         <Myinview_test debug = {debug} offset_y = "300">
           <Semititle>INVITATION</Semititle>
-          소중한 분들을 모십니다.<br/>
-          블라블라블라블라블라블라
+          <div style = {{
+            margin: "20px", 
+            marginLeft: "65px", 
+            marginRight: "65px",
+            fontSize : "18px",
+
+          }}>
+            <b>태</b>양처럼 빛나는 우리의 사랑이<br/>
+            <div style = {{paddingTop : "12px"}}></div>
+            <b>우</b>주 끝까지 이어지길 바라며<br/>
+            <div style = {{paddingTop : "12px"}}></div>
+            <b>지</b>금 이 순간, 소중한 여러분을<br/>
+            <div style = {{paddingTop : "12px"}}></div>
+            <b>연</b>연결의 자리로 초대합니다.<br/>
+          </div>
         </Myinview_test>
 
 

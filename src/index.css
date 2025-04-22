@@ -41,6 +41,20 @@
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'Ej-demilight';
+    src: url('./assets/EASTARJET-DemiLight.otf') format('opentype');
+}
+
+@font-face {
+    font-family: 'Ej-heavy';
+    src: url('./assets/EEASTARJET-Heavy.otf') format('opentype');
+}
+
+@font-face {
+    font-family: 'Ej-medium';
+    src: url('./assets/EASTARJET-Medium.otf') format('opentype');
+}
 
 @font-face {
     font-family: 'XXX';

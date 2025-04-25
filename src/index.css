@@ -43,17 +43,17 @@
 
 @font-face {
     font-family: 'Ej-demilight';
-    src: url('./assets/EASTARJET-DemiLight.otf') format('opentype');
+    src: url('./assets/EASTARJET-DemiLight.woff2') format('woff2');
 }
 
 @font-face {
     font-family: 'Ej-heavy';
-    src: url('./assets/EEASTARJET-Heavy.otf') format('opentype');
+    src: url('./assets/EEASTARJET-Heavy.woff2') format('woff2');
 }
 
 @font-face {
     font-family: 'Ej-medium';
-    src: url('./assets/EASTARJET-Medium.otf') format('opentype');
+    src: url('./assets/EASTARJET-Medium.woff2') format('woff2');
 }
 
 @font-face {

@@ -3,7 +3,6 @@ import { InView } from 'react-intersection-observer';
 
 const Myinview = ({ children, debug }) => {
 
-
   return (
     <InView
       triggerOnce={true}

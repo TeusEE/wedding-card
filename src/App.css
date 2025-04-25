@@ -9,9 +9,13 @@
   flex-direction: column;
   color : black;
   background-color: rgb(251, 251, 251);
-  font-family: MaruBuriLight;
+  font-family: Ej-demilight;
   width: 100%;
   max-width: 390px;
+}
+
+b {
+  font-family: Ej-heavy;
 }
 
 @media (max-width: 1400px) {

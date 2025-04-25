@@ -17,7 +17,9 @@ import shareMessage from './kakao'
 import Myinview from './Myinview'
 import Myinview_test from './Myinview_test'
 import audioFile from './assets/background_music.weba'
-
+import { collection, doc, setDoc, getDocs, query } from 'firebase/firestore';
+import { db } from "./firebase";
+import Bus from './Bus'
 
 function App() {
   const copy_link = () => {
@@ -34,6 +36,7 @@ function App() {
   
   const [image_modal, set_image_modal] = useState({isopen:false, src:null});
   const [bank_modal, set_bank_modal] = useState({isopen:false, src:null});
+  const [bus_modal, set_bus_modal] = useState({isopen:false, src:null});
   
   const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef(null);
@@ -70,7 +73,33 @@ function App() {
   }, [])
 
 
-  
+  const user_nm = useRef("")
+  const tot_num = useRef("")
+  const regist_user = async () => {
+    let _user_nm = user_nm.current.value;
+    let _tot_num = tot_num.current.value;
+    const bus_usage = collection(db, "Wedding_bus_usage")
+    try{
+      await setDoc(doc(bus_usage), {
+        name:_user_nm, number : _tot_num
+      })
+    } catch (error) {
+      alert("오류가 발생했어요...!")
+    } finally {
+      alert(`${_user_nm} 님 포함 ${_tot_num}명 등록 완료!`)
+    }
+  }
+
+  const get_all_user = async () => {
+    const bus_usage = collection(db, "Wedding_bus_usage")
+    const q = query(bus_usage);
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+      // doc.data() is never undefined for query doc snapshots
+      console.log(doc.id, " => ", doc.data());
+    });
+  }
+
 
   return (
     <>
@@ -84,7 +113,7 @@ function App() {
           />
         </div>
         <div className="fade-in" style={{ border: debug }}>
-          <p style = {{marginTop:"20px", marginBottom:"50px", fontSize : "20px", fontFamily : "MaruBuri"}}>
+          <p style = {{marginTop:"20px", marginBottom:"50px", fontSize : "30px", fontFamily : "Ej-medium"}}>
             이태우 & 안지연
           </p>
         </div>
@@ -134,7 +163,7 @@ function App() {
             <div style = {{paddingTop : "12px"}}></div>
             <b>지</b>금 이 순간, 소중한 여러분을<br/>
             <div style = {{paddingTop : "12px"}}></div>
-            <b>연</b>연결의 자리로 초대합니다.<br/>
+            <b>연</b>결의 자리로 초대합니다.<br/>
           </div>
         </Myinview_test>
 
@@ -197,6 +226,18 @@ function App() {
         </Myinview>
 
         <Myinview debug = {debug}>
+          <div onClick = {()=>{set_bus_modal({isopen:true, src:"M"});document.body.classList.add('modal-open')}}
+            style = {{
+              backgroundColor:"rgb(242,238,238)",
+              padding:"12px",
+              margin:"12px",
+              marginLeft:"20%",
+              marginRight:"20%",
+            }}>청주◀▶서울 셔틀버스</div>
+          {/*<button onClick={()=>{get_all_user()}}>get_alldb</button>*/}
+        </Myinview>
+
+        <Myinview debug = {debug}>
           <p style = {{
             fontSize:"20px",
             fontFamily:"MaruBuri",
@@ -220,6 +261,7 @@ function App() {
             }}>신부측 계좌번호</div>
         </Myinview>
 
+
         <Myinview debug = {debug}>
           <div onClick={() => shareMessage()} style={{ display: "flex", alignItems: "center", justifyContent: "center", marginTop : "40px"}}>
             <img src={kakaoLogo} width={25} style={{ marginRight: "5px" }}></img>
@@ -242,6 +284,16 @@ function App() {
         >
           <div style = {{display:"flex", justifyContent:"center"}}>
             <img src={image_modal.src} width={"100%"}/>
+          </div>  
+        </Modal>
+
+        <Modal
+          isOpen={bus_modal}
+          onClose={() => {set_bus_modal({isopen:false, src:null});document.body.classList.remove('modal-open')}}
+          mystyle = {{backgroundColor:"rgb(255, 255, 255)"}}
+        >
+          <div style = {{display:"flex", justifyContent:"center"}}>
+            <Bus src={bus_modal.src} user_nm = {user_nm} tot_num = {tot_num} regist_user = {regist_user}/>
           </div>  
         </Modal>
         

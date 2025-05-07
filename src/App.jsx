@@ -3,7 +3,7 @@ import './App.css'
 import mainphoto from './assets/mainphoto.webp'
 import mymap from './assets/mymap.png'
 import villadegd from './assets/villadegd.png'
-import kakaoPhoto from './assets/kakao_photo.webp'
+import kakaoPhoto from './assets/kakao_photo.webp'r
 import kakaoLogo from './assets/kakao-talk.svg'
 import audioIcon from './assets/audio.svg'
 import linkimg from './assets/link.png'

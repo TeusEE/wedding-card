@@ -34,7 +34,7 @@ function App() {
   const today = new Date();
   const tg_date = new Date(2025, 6, 13, 11, 30, 0);
   
-  const [image_modal, set_image_modal] = useState({isopen:false, src:null});
+  const [image_modal, set_image_modal] = useState({isopen:false, src:null, src_snap:null});
   const [bank_modal, set_bank_modal] = useState({isopen:false, src:null});
   const [bus_modal, set_bus_modal] = useState({isopen:false, src:null});
   
@@ -131,7 +131,7 @@ function App() {
               top: 0,
               left: 0,
               right: 0,
-              height: '30%',
+              height: '22%',
               background: 'linear-gradient(to bottom, rgb(255, 255, 255) 0%, rgba(255, 255, 255, 0.88) 30%, rgba(255, 255, 255, 0) 100%)',
               filter: 'blur(0px)'
             }}></div>
@@ -140,7 +140,7 @@ function App() {
               bottom: 0,
               left: 0,
               right: 0,
-              height: '30%',
+              height: '22%',
               background: 'linear-gradient(to top, rgb(255, 255, 255) 0%, rgba(255, 255, 255, 0.88) 30%, rgba(255, 255, 255, 0) 100%)',
               filter: 'blur(0px)'
             }}></div>
@@ -148,14 +148,13 @@ function App() {
         </div>
           
         
-        <Myinview_test debug = {debug} offset_y = "300">
+        <Myinview debug = {debug} offset_y = "300">
           <Semititle>INVITATION</Semititle>
           <div style = {{
             margin: "20px", 
             marginLeft: "65px", 
             marginRight: "65px",
-            fontSize : "18px",
-
+            fontSize : "17px",
           }}>
             <b>태</b>양처럼 빛나는 우리의 사랑이<br/>
             <div style = {{paddingTop : "12px"}}></div>
@@ -165,17 +164,17 @@ function App() {
             <div style = {{paddingTop : "12px"}}></div>
             <b>연</b>결의 자리로 초대합니다.<br/>
           </div>
-        </Myinview_test>
+        </Myinview>
 
 
-        <Myinview_test debug = {debug} offset_y = "450">
+        <Myinview debug = {debug} offset_y = "450">
           <div style = {{marginBottom:"10px", marginTop : "20px"}}>
             <b>이종면 · 유병희</b> 의 차남 <span style = {{fontFamily:"MaruBuriBold"}}>태우</span><br/>
           </div>
           <div style = {{marginBottom:"10px", marginTop : "10px"}}>
             <b>안동열 · 조민경</b> 의 차녀 <span style = {{fontFamily:"MaruBuriBold"}}>지연</span>
           </div>
-        </Myinview_test>
+        </Myinview>
         
         <Myinview debug = {debug}>
           <div style = {{border:debug, backgroundColor:"rgb(246, 245, 245)"}}>

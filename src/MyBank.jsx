@@ -31,7 +31,7 @@ const MyBank  = ({src}) => {
                 }}>
                     <div>
                         <p style = {{fontFamily : "MaruBuriLight", fontSize : "18px", marginTop: "0px"}}>{dt[key][0]}</p>
-                        {dt[key][1]} {dt[key][2]}
+                        <div style = {{fontSize : "13px"}}>{dt[key][1]} {dt[key][2]}</div>
                     </div>
                     <div style = {{width : "5vw"}}></div>
                     <button
@@ -44,8 +44,8 @@ const MyBank  = ({src}) => {
                             borderRadius : "5px"
                         }}
                     >
-                        <img src = {copyicon} width={"12px"}></img>
-                        <span style = {{marginLeft : "10px", marginRight:"5px"}}>복사</span>
+                        <img src = {copyicon} width={"11px"}></img>
+                        <span style = {{marginLeft : "10px", marginRight:"5px", fontSize : '11px'}}>복사</span>
                     </button>
                 </div>
             })

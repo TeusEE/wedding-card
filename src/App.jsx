@@ -283,7 +283,11 @@ function App() {
         >
           <div style = {{display:"flex", justifyContent:"center"}}>
             <img src={image_modal.src} width={"100%"}/>
-          </div>  
+          </div>
+          <div>
+            <button>{"<"}</button>
+            <button>{">"}</button>
+          </div>
         </Modal>
 
         <Modal

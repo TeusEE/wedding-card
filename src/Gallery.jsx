@@ -35,10 +35,10 @@ const Gallery  = ({title, image_modal, set_image_modal}) => {
           return parseInt(_a) - parseInt(_b)
         })
         
-        const image_final = loadedImages.map((v, i)=>(v, loadedImages_snap[i]))
+        const image_final = loadedImages.map((v, i)=>([v, loadedImages_snap[i]]))
         const temp = []
         for (let i = 0; i < parseInt(Object.entries(imagePaths).length/3); i++) {
-          temp.push(loadedImages.slice(i*3, (i+1)*3))
+          temp.push(image_final.slice(i*3, (i+1)*3))
         }
         set_images(temp.slice(0, 2));
         set_all_images(temp)
@@ -63,7 +63,7 @@ const Gallery  = ({title, image_modal, set_image_modal}) => {
               {
                   [...Array(3).keys()].map((v3, i3) => {
                   return (
-                    <MyImage key = {v2[v3].path} src={v2[v3].src} image_modal = {image_modal} set_image_modal={set_image_modal}/>
+                    <MyImage key = {v2[v3][0].path} src={v2[v3][0].src} src_snap = {v2[v3][1].src} image_modal = {image_modal} set_image_modal={set_image_modal}/>
                   )
                   })
               }

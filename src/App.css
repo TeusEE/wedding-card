@@ -2,6 +2,7 @@
   margin: 0 auto;
   text-align: center;
   border-style : solid;
+  background-color: rgb(251, 251, 251); /* 명시적으로 배경색 설정 */
 }
 
 .main-frame {
@@ -42,3 +43,29 @@ b {
 }
 
 
+
+.styled-button {
+  background: linear-gradient(45deg, #f5c9c9, #e4b3c4);
+  border: none;
+  border-radius: 25px;
+  color: white;
+  margin-top : 20px;
+  margin-left : 10px;
+  margin-right : 10px;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-family: 'Arial', sans-serif;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.styled-button:hover {
+  background: linear-gradient(45deg, #f06595, #ff6b6b);
+  transform: scale(1.05);
+}
+
+.styled-button:active {
+  transform: scale(0.95);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}

@@ -3,6 +3,7 @@ import './App.css'
 import mainphoto from './assets/mainphoto.webp'
 import mymap from './assets/mymap.png'
 import villadegd from './assets/villadegd.png'
+import kakaoPhoto from './assets/kakao_photo.webp'
 import kakaoLogo from './assets/kakao-talk.svg'
 import audioIcon from './assets/audio.svg'
 import linkimg from './assets/link.png'
@@ -298,8 +299,8 @@ function App() {
             <img src={image_modal.src} width={"100%"}/>
           </div>
           <div>
-            <button onClick = {()=>{gallery_change("left")}}>{"<"}</button>
-            <button onClick = {()=>{gallery_change("right")}}>{">"}</button>
+            <button className="styled-button" onClick = {()=>{gallery_change("left")}}>{"<"}</button>
+            <button className="styled-button" onClick = {()=>{gallery_change("right")}}>{">"}</button>
           </div>
         </Modal>
 

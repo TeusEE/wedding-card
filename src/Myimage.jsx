@@ -1,6 +1,6 @@
-const MyImage  = ({src, src_snap, image_modal, set_image_modal}) => {
+const MyImage  = ({idx, src, src_snap, image_modal, set_image_modal}) => {
     const open_modal = () => {
-        set_image_modal({isopen : true, src : src})
+        set_image_modal({...image_modal, isopen : true, src : src, current_idx : idx})
     }
     return  (
         <div style = {{

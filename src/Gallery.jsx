@@ -22,6 +22,7 @@ const Gallery  = ({title, image_modal, set_image_modal}) => {
           _b = _b[_b.length-1].split(".")[0]
           return parseInt(_a) - parseInt(_b)
         })
+        set_image_modal({...image_modal, image_tot:[...loadedImages]})
 
         const image_snapPromises = Object.entries(imagePaths_snap).map(([path, importImage]) =>
           importImage().then((module) => ({ path, src: module.default }))
@@ -63,7 +64,7 @@ const Gallery  = ({title, image_modal, set_image_modal}) => {
               {
                   [...Array(3).keys()].map((v3, i3) => {
                   return (
-                    <MyImage key = {v2[v3][0].path} src={v2[v3][0].src} src_snap = {v2[v3][1].src} image_modal = {image_modal} set_image_modal={set_image_modal}/>
+                    <MyImage idx={i2*3+i3} key = {v2[v3][0].path} src={v2[v3][0].src} src_snap = {v2[v3][1].src} image_modal = {image_modal} set_image_modal={set_image_modal}/>
                   )
                   })
               }

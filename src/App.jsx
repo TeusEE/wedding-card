@@ -3,19 +3,16 @@ import './App.css'
 import mainphoto from './assets/mainphoto.webp'
 import mymap from './assets/mymap.png'
 import villadegd from './assets/villadegd.png'
-import viteLogo from '/vite.svg'
 import kakaoLogo from './assets/kakao-talk.svg'
 import audioIcon from './assets/audio.svg'
 import linkimg from './assets/link.png'
 import Transport from './Transport'
 import Calendar from './Calendar'
 import Semititle from './Semititle'
-//import Gallery from './Gallery'
 import MyBank from './MyBank'
 import Modal from './Modal'
 import shareMessage from './kakao'
 import Myinview from './Myinview'
-import Myinview_test from './Myinview_test'
 import audioFile from './assets/background_music.weba'
 import { collection, doc, setDoc, getDocs, query } from 'firebase/firestore';
 import { db } from "./firebase";
@@ -34,7 +31,7 @@ function App() {
   const today = new Date();
   const tg_date = new Date(2025, 6, 13, 11, 30, 0);
   
-  const [image_modal, set_image_modal] = useState({isopen:false, src:null, src_snap:null});
+  const [image_modal, set_image_modal] = useState({isopen:false, src:null, src_snap:null, current_idx:null, image_tot:[]});
   const [bank_modal, set_bank_modal] = useState({isopen:false, src:null});
   const [bus_modal, set_bus_modal] = useState({isopen:false, src:null});
   
@@ -71,6 +68,22 @@ function App() {
       }
     }
   }, [])
+
+
+  const gallery_change = (left_or_right) => {
+    const temp_image_modal = {...image_modal}
+    if (left_or_right ==="left"){
+      temp_image_modal["current_idx"] = temp_image_modal["current_idx"] - 1
+    } else {
+      temp_image_modal["current_idx"] = temp_image_modal["current_idx"] + 1
+    }
+    if (temp_image_modal["current_idx"]>11){
+      temp_image_modal["current_idx"] = 0
+    } else if (temp_image_modal["current_idx"]<0){
+      temp_image_modal["current_idx"] = 11
+    }
+    set_image_modal({...temp_image_modal, src:temp_image_modal["image_tot"][temp_image_modal["current_idx"]]["src"]})
+  }
 
 
   const user_nm = useRef("")
@@ -278,15 +291,15 @@ function App() {
 
         <Modal
           isOpen={image_modal}
-          onClose={() => {set_image_modal({isopen:false, src:null});document.body.classList.remove('modal-open')}}
+          onClose={() => {set_image_modal({...image_modal,isopen:false, src:null});document.body.classList.remove('modal-open')}}
           mystyle = {{backgroundColor:"rgb(0, 0, 0)"}}
         >
           <div style = {{display:"flex", justifyContent:"center"}}>
             <img src={image_modal.src} width={"100%"}/>
           </div>
           <div>
-            <button>{"<"}</button>
-            <button>{">"}</button>
+            <button onClick = {()=>{gallery_change("left")}}>{"<"}</button>
+            <button onClick = {()=>{gallery_change("right")}}>{">"}</button>
           </div>
         </Modal>
 

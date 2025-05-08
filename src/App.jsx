@@ -3,7 +3,7 @@ import './App.css'
 import mainphoto from './assets/mainphoto.webp'
 import mymap from './assets/mymap.png'
 import villadegd from './assets/villadegd.png'
-import kakaoPhoto from './assets/kakao_photo.webp'r
+import kakaoPhoto from './assets/kakao_photo.webp'
 import kakaoLogo from './assets/kakao-talk.svg'
 import audioIcon from './assets/audio.svg'
 import linkimg from './assets/link.png'
@@ -25,6 +25,11 @@ function App() {
     alert("링크주소가 복사되었습니다.")
   }
   const debug = process.env.NODE_ENV === 'development'?"solid":"none";
+  useEffect(() => {
+    document.addEventListener('gesturestart', (e) => e.preventDefault());
+    document.addEventListener('gesturechange', (e) => e.preventDefault());
+  }, []);
+
 
   const Gallery = lazy(() => import('./Gallery'));
   
@@ -121,13 +126,14 @@ function App() {
         <div style={{ border: debug, textAlign: 'right' }}>
           <img
             src={audioIcon} 
-            width={"20px"} 
-            style={{ marginRight: "10px", marginTop: "10px" }} 
+            //width={"20px"}
+            width={"5%"} 
+            style={{ marginRight: "2.5%", marginTop: "2%" }} 
             onClick={handleAudioToggle}
           />
         </div>
         <div className="fade-in" style={{ border: debug }}>
-          <p style = {{marginTop:"20px", marginBottom:"50px", fontSize : "30px", fontFamily : "Ej-medium"}}>
+          <p style = {{marginTop:"4%", marginBottom:"12%", fontSize : "30px", fontFamily : "Ej-medium"}}>
             이태우 & 안지연
           </p>
         </div>
@@ -166,8 +172,8 @@ function App() {
           <Semititle>INVITATION</Semititle>
           <div style = {{
             margin: "20px", 
-            marginLeft: "65px", 
-            marginRight: "65px",
+            marginLeft: "5%", 
+            marginRight: "5%",
             fontSize : "17px",
           }}>
             <b>태</b>양처럼 빛나는 우리의 사랑이<br/>

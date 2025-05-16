@@ -72,16 +72,16 @@ function App() {
         console.error("오디오 재생에 실패했습니다. 브라우저 설정을 확인해주세요.");
       });
 
-      document.removeEventListener('click', playAudioOnInteraction);
+      //document.removeEventListener('click', playAudioOnInteraction);
       window.removeEventListener("touchstart", playAudioOnInteraction);
     };
 
     
-    document.addEventListener('click', playAudioOnInteraction);
+    //document.addEventListener('click', playAudioOnInteraction);
     window.addEventListener("touchstart", playAudioOnInteraction);
 
     return () => {
-      document.removeEventListener('click', playAudioOnInteraction);
+      //document.removeEventListener('click', playAudioOnInteraction);
       window.removeEventListener("touchstart", playAudioOnInteraction);
       
     };
@@ -214,7 +214,26 @@ function App() {
             <div style = {{paddingTop : "12px"}}></div>
             <b>지</b>금 이 순간, 소중한 여러분을<br/>
             <div style = {{paddingTop : "12px"}}></div>
-            <b>연</b>결의 자리로 초대합니다.<br/>
+            <b>연</b>결의 자리로 초대합니다.<br/><br/>
+
+          {/* 
+            <div style = {{width : "100%", display : "flex"}}>
+              <div style = {{width : "15%", textAlign : "right"}}><b>태</b></div>
+              <div style = {{width : "75%"}}>양처럼 빛나는 우리의 사랑이</div><br/>
+            </div>
+            <div style = {{width : "100%", display : "flex"}}>
+              <div style = {{width : "15%", textAlign : "right"}}><b>우</b></div>
+              <div style = {{width : "75%"}}>주 끝까지 이어지길 바라며</div><br/>
+            </div>
+            <div style = {{width : "100%", display : "flex"}}>
+              <div style = {{width : "15%", textAlign : "right"}}><b>지</b></div>
+              <div style = {{width : "75%"}}>금 이 순간, 소중한 여러분을</div><br/>
+            </div>
+            <div style = {{width : "100%", display : "flex"}}>
+              <div style = {{width : "15%", textAlign : "right"}}><b>연</b></div>
+              <div style = {{width : "75%"}}>결의 자리로 초대합니다.</div><br/>
+            </div>
+            */}
           </div>
         </Myinview>
 
@@ -229,7 +248,11 @@ function App() {
         </Myinview>
         
         <Myinview debug = {debug}>
-          <div style = {{border:debug, backgroundColor:"rgb(246, 245, 245)"}}>
+          <div style = {{
+            border:debug,
+            backgroundColor:"rgb(246, 245, 245)",
+            paddingBottom : "20px"
+          }}>
             <p style = {{
               fontSize:"20px",
               fontFamily:"MaruBuri",
@@ -263,7 +286,9 @@ function App() {
           <Semititle>Location</Semititle>
           <img src = {villadegd} width={"35%"}></img><br/>
           <img src = {mymap} width={"90%"}></img><br/>
-          주소 : 서울 강남구 언주로 126길 23 (논현동) 
+          주소 : <text onClick = {()=>{window.location.href = "https://map.naver.com/p/entry/place/1867298336?placePath=%2Fhome"}}>
+            서울 강남구 언주로 126길 23 (논현동)
+            </text> 
           <br/><br/>
           <Transport
             tr_type = "bus"
@@ -338,6 +363,7 @@ function App() {
           </div>
           <div>
             <button className="styled-button" onClick = {()=>{gallery_change("left")}}>{"<"}</button>
+            <button className="styled-button" onClick = {()=>{set_image_modal({...image_modal,isopen:false, src:null})}}>{"Close"}</button>
             <button className="styled-button" onClick = {()=>{gallery_change("right")}}>{">"}</button>
           </div>
         </Modal>

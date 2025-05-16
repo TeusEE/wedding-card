@@ -1,8 +1,8 @@
 import { useEffect, useState, lazy, Suspense, useRef } from 'react'
 import './App.css'
 import mainphoto from './assets/mainphoto.webp'
-import mymap from './assets/mymap.png'
-import villadegd from './assets/villadegd.png'
+import mymap from './assets/mymap.webp'
+import villadegd from './assets/villadegd.webp'
 import kakaoPhoto from './assets/kakao_photo.webp'
 import kakaoLogo from './assets/kakao-talk.svg'
 import audioIcon from './assets/audio.svg'
@@ -56,6 +56,38 @@ function App() {
     }
     setIsPlaying(!isPlaying);
   };
+
+  useEffect(() => {
+    const playAudioOnInteraction = () => {
+      if (!audioRef.current) {
+        audioRef.current = new Audio(audioFile);
+        audioRef.current.load();
+      }
+      // 사용자 상호작용 이벤트 내에서 바로 재생 시도
+      audioRef.current.play().then(() => {
+        setIsPlaying(true);
+        console.log("Audio playback started successfully.");
+      }).catch((error) => {
+        console.error("Audio play failed:", error);
+        console.error("오디오 재생에 실패했습니다. 브라우저 설정을 확인해주세요.");
+      });
+
+      document.removeEventListener('click', playAudioOnInteraction);
+      window.removeEventListener("touchstart", playAudioOnInteraction);
+    };
+
+    
+    document.addEventListener('click', playAudioOnInteraction);
+    window.addEventListener("touchstart", playAudioOnInteraction);
+
+    return () => {
+      document.removeEventListener('click', playAudioOnInteraction);
+      window.removeEventListener("touchstart", playAudioOnInteraction);
+      
+    };
+  }, []);
+
+
 
   useEffect(() => {
     window.scrollTo(0, 0)
@@ -168,7 +200,7 @@ function App() {
         </div>
           
         
-        <Myinview debug = {debug} offset_y = "300">
+        <Myinview debug = {debug}>
           <Semititle>INVITATION</Semititle>
           <div style = {{
             margin: "20px", 
@@ -187,7 +219,7 @@ function App() {
         </Myinview>
 
 
-        <Myinview debug = {debug} offset_y = "450">
+        <Myinview debug = {debug}>
           <div style = {{marginBottom:"10px", marginTop : "20px"}}>
             <b>이종면 · 유병희</b> 의 차남 <span style = {{fontFamily:"MaruBuriBold"}}>태우</span><br/>
           </div>

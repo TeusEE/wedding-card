@@ -302,6 +302,15 @@ function App() {
         </Myinview>
 
         <Myinview debug = {debug}>
+          <div onClick = {()=>{window.location.href = "https://nonhyeonvilladegd.com/86"}}
+            style = {{
+              backgroundColor:"rgb(242,238,238)",
+              padding:"12px",
+              margin:"12px",
+              marginLeft:"20%",
+              marginRight:"20%"
+            }}>주차장, 셔틀버스 정보
+          </div>
           <div onClick = {()=>{set_bus_modal({isopen:true, src:"M"});document.body.classList.add('modal-open')}}
             style = {{
               backgroundColor:"rgb(242,238,238)",
@@ -309,7 +318,8 @@ function App() {
               margin:"12px",
               marginLeft:"20%",
               marginRight:"20%",
-            }}>청주◀▶서울 셔틀버스</div>
+            }}>청주◀▶서울 셔틀버스
+          </div>
           {/*<button onClick={()=>{get_all_user()}}>get_alldb</button>*/}
         </Myinview>
 

@@ -2,8 +2,8 @@ function shareMessage() {
     Kakao.Share.sendDefault({
       objectType: 'feed',
       content: {
-        title: '안지연💗이태우',
-        description: '7월 13일 안찌💗태우스의 결혼식으로\n여러분을 초대합니다.',
+        title: '안지연❤이태우',
+        description: '7월 13일 안찌❤태우 결혼식\n여러분을 초대.',
         imageUrl:
           'https://teusee.github.io/assets/kakao_photo-DDb0D4Uw.webp',
         link: {

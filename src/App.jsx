@@ -345,6 +345,16 @@ function App() {
               marginLeft:"20%",
               marginRight:"20%"
             }}>신부측 계좌번호</div>
+          <div
+            style = {{
+              marginLeft:"20%",
+              marginRight:"20%",
+              fontSize : "16px"
+            }}
+          >
+            축하 화환은 정중히 사양합니다.<br></br>
+            🖤감사한 마음만 받겠습니다🖤
+          </div>
         </Myinview>
 
 

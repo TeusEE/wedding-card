@@ -383,7 +383,7 @@ function App() {
           </div>
           <div>
             <button className="styled-button" onClick = {()=>{gallery_change("left")}}>{"<"}</button>
-            <button className="styled-button" onClick = {()=>{set_image_modal({...image_modal,isopen:false, src:null})}}>{"Close"}</button>
+            <button className="styled-button" onClick = {()=>{set_image_modal({...image_modal,isopen:false, src:null});document.body.classList.remove('modal-open')}}>{"Close"}</button>
             <button className="styled-button" onClick = {()=>{gallery_change("right")}}>{">"}</button>
           </div>
         </Modal>

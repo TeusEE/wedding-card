@@ -1,7 +1,7 @@
 .calendar {
-    width: 90%;
+    width: 100%;
     border-collapse: collapse;
-    margin: 20px 0;
+    margin: 20px 2.5%;
   }
   
   .calendar th, .calendar td {
@@ -28,6 +28,6 @@
   .calendar .special-day {
     color: rgba(10, 36, 203, 0.733);
     /*background-color: rgb(254, 247, 238);*/
-    border-radius: 50%;
+    border-radius: 100%;
     outline: 2px solid rgba(174, 191, 133, 0.733)
   }

@@ -129,6 +129,10 @@ function App() {
   const regist_user = async () => {
     let _user_nm = user_nm.current.value;
     let _tot_num = tot_num.current.value;
+    if (_user_nm==="" | _tot_num===""){
+      alert("성함과 탑승인원을 입력해 주세요")
+      throw new Error("username or tot_num is missing!");
+    }
     const bus_usage = collection(db, "Wedding_bus_usage")
     try{
       await setDoc(doc(bus_usage), {
